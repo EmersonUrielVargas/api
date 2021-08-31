@@ -4,10 +4,6 @@ const port = 3000
 let status = 202;
 
 app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
-
-app.get('/', (req, res) => {
 
   let option = random(random(0,1),1)
   if (status === 202) {
