@@ -1,10 +1,41 @@
 const express = require('express')
 const app = express()
 const port = 3000
+let status = 202;
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
+
+app.get('/', (req, res) => {
+
+  let option = random(random(0,1),1)
+  if (status === 202) {
+    if (option === 1) {
+      res.status(202).send('ERROR 202');
+      status = 202;
+      console.log("ERROR 202")
+      console.log(status);
+    } else {
+      res.status(500).send('ERROR 500');
+      status = 500;
+      console.log("ERROR 500");
+      console.log(status);
+    }
+  }else{
+    res.status(500).send('ERROR 500');
+    status = 500;
+    console.log("ERROR 500");
+    console.log(status);
+  }
+})
+
+function random(inferior, superior) {
+  var possibilities = superior - inferior;
+  var random = Math.random() * (possibilities + 1);
+  random = Math.floor(random);
+  return inferior + random;
+}
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
